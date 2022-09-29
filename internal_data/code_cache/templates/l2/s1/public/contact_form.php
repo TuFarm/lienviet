@@ -1,0 +1,107 @@
+<?php
+// FROM HASH: ab518efcd7601ba60aed6bbc7ee74af9
+return array(
+'code' => function($__templater, array $__vars, $__extensions = null)
+{
+	$__finalCompiled = '';
+	$__templater->pageParams['pageTitle'] = $__templater->preEscaped('Liên hệ');
+	$__finalCompiled .= '
+
+';
+	$__compilerTemp1 = '';
+	if (!$__vars['xf']['visitor']['user_id']) {
+		$__compilerTemp1 .= '
+				' . $__templater->formTextBoxRow(array(
+			'name' => 'username',
+			'autofocus' => 'autofocus',
+			'maxlength' => $__templater->func('max_length', array($__vars['xf']['visitor'], 'username', ), false),
+			'required' => 'required',
+		), array(
+			'label' => 'Tên bạn',
+			'hint' => 'Bắt buộc',
+		)) . '
+
+				' . $__templater->formTextBoxRow(array(
+			'name' => 'email',
+			'maxlength' => $__templater->func('max_length', array($__vars['xf']['visitor'], 'email', ), false),
+			'type' => 'email',
+			'required' => 'required',
+		), array(
+			'label' => 'Địa chỉ email của bạn',
+			'hint' => 'Bắt buộc',
+		)) . '
+			';
+	} else {
+		$__compilerTemp1 .= '
+				' . $__templater->formRow($__templater->escape($__vars['xf']['visitor']['username']), array(
+			'label' => 'Tên bạn',
+		)) . '
+				';
+		if ($__vars['xf']['visitor']['email']) {
+			$__compilerTemp1 .= '
+
+					' . $__templater->formRow($__templater->escape($__vars['xf']['visitor']['email']), array(
+				'label' => 'Địa chỉ email của bạn',
+			)) . '
+
+				';
+		} else {
+			$__compilerTemp1 .= '
+
+					' . $__templater->formTextBoxRow(array(
+				'name' => 'email',
+				'type' => 'email',
+				'required' => 'required',
+			), array(
+				'label' => 'Địa chỉ email của bạn',
+				'hint' => 'Bắt buộc',
+			)) . '
+
+				';
+		}
+		$__compilerTemp1 .= '
+			';
+	}
+	$__finalCompiled .= $__templater->form('
+	<div class="block-container">
+		<div class="block-body">
+			' . $__compilerTemp1 . '
+
+			' . $__templater->formRowIfContent($__templater->func('captcha', array($__vars['forceCaptcha'], false)), array(
+		'label' => 'Mã xác nhận',
+		'hint' => 'Bắt buộc',
+	)) . '
+
+			' . $__templater->formTextBoxRow(array(
+		'name' => 'subject',
+		'required' => 'required',
+	), array(
+		'label' => 'Tiêu đề',
+		'hint' => 'Bắt buộc',
+	)) . '
+
+			' . $__templater->formTextAreaRow(array(
+		'name' => 'message',
+		'rows' => '5',
+		'autosize' => 'true',
+		'required' => 'required',
+	), array(
+		'label' => 'Nội dung',
+		'hint' => 'Bắt buộc',
+	)) . '
+		</div>
+		' . $__templater->formSubmitRow(array(
+		'submit' => 'Gửi',
+	), array(
+	)) . '
+	</div>
+	' . $__templater->func('redirect_input', array(null, null, true)) . '
+', array(
+		'action' => $__templater->func('link', array('misc/contact', ), false),
+		'class' => 'block',
+		'ajax' => 'true',
+		'data-force-flash-message' => 'true',
+	));
+	return $__finalCompiled;
+}
+);
